@@ -1,0 +1,10 @@
+C:\Users\Jean-Baptou\source\repos\HDV_Online\HDV_Online\bin\Debug\netcoreapp3.1\appsettings.Development.json
+C:\Users\Jean-Baptou\source\repos\HDV_Online\HDV_Online\bin\Debug\netcoreapp3.1\appsettings.json
+C:\Users\Jean-Baptou\source\repos\HDV_Online\HDV_Online\bin\Debug\netcoreapp3.1\Properties\launchSettings.json
+C:\Users\Jean-Baptou\source\repos\HDV_Online\HDV_Online\bin\Debug\netcoreapp3.1\HDV_Online.exe
+C:\Users\Jean-Baptou\source\repos\HDV_Online\HDV_Online\obj\Debug\netcoreapp3.1\HDV_Online.csprojAssemblyReference.cache
+C:\Users\Jean-Baptou\source\repos\HDV_Online\HDV_Online\obj\Debug\netcoreapp3.1\HDV_Online.AssemblyInfoInputs.cache
+C:\Users\Jean-Baptou\source\repos\HDV_Online\HDV_Online\obj\Debug\netcoreapp3.1\HDV_Online.AssemblyInfo.cs
+C:\Users\Jean-Baptou\source\repos\HDV_Online\HDV_Online\obj\Debug\netcoreapp3.1\HDV_Online.RazorTargetAssemblyInfo.cache
+C:\Users\Jean-Baptou\source\repos\HDV_Online\HDV_Online\obj\Debug\netcoreapp3.1\staticwebassets\HDV_Online.StaticWebAssets.Manifest.cache
+C:\Users\Jean-Baptou\source\repos\HDV_Online\HDV_Online\obj\Debug\netcoreapp3.1\staticwebassets\HDV_Online.StaticWebAssets.xml
