@@ -12,5 +12,6 @@ namespace HDV_Online.Models
         public string Categorie { get; set; }
         public int Prix { get; set; }
         public int QuantiteProd { get; set; }
+        public ICollection<Compose> Compose { get; set; }
     }
 }

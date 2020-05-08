@@ -6,15 +6,12 @@ using System.Threading.Tasks;
 
 namespace HDV_Online.Models
 {
-    public class Commande
+    public class Commercial
     {
         public int Id { get; set; }
-        public DateTime DateCommande { get; set; }
-        public string Commercial { get; set; }
-        public string QuantiteCmd { get; set; }
-        public ICollection<Compose> Compose { get; set; }
         [ForeignKey("ClientId")]
         public virtual Client Client { get; set; }
-
+        [ForeignKey("UtilisateurId")]
+        public virtual Utilisateur Utilisateur { get; set; }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,6 +9,8 @@ namespace HDV_Online.Models
     public class Coordonnee
     {
         public int Id { get; set; }
+        [ForeignKey("ClientId")]
+        public Client Client { get; set; }
         public int Code_Postal { get; set; }
         public string Ville { get; set; }
         public string Pays { get; set; }
