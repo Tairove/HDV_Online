@@ -4,14 +4,16 @@ using HDV_Online.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HDV_Online.Migrations
 {
     [DbContext(typeof(HDVContext))]
-    partial class HDVContextModelSnapshot : ModelSnapshot
+    [Migration("20200510174657_Login")]
+    partial class Login
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -303,7 +305,7 @@ namespace HDV_Online.Migrations
                     b.Property<string>("AccessToken")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Email")
+                    b.Property<string>("EmailUtilisateur")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
