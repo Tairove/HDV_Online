@@ -9,12 +9,11 @@ namespace HDV_Online.Models
     public class Commande
     {
         public int Id { get; set; }
+        [Column(TypeName = "date")]
         public DateTime DateCommande { get; set; }
-        public string Commercial { get; set; }
-        public string QuantiteCmd { get; set; }
-        public ICollection<Compose> Compose { get; set; }
+        public ProduitsCommande ProduitsCommandes { get; set; }
         [ForeignKey("ClientId")]
-        public virtual Client Client { get; set; }
+        public Client Client { get; set; }
 
     }
 }

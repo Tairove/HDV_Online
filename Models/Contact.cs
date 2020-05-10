@@ -9,12 +9,13 @@ namespace HDV_Online.Models
     public class Contact
     {
         public int Id { get; set; }
-        public string TypeContact { get; set; }
-        public string Question { get; set; }
+        public string Message { get; set; }
         public string NomContact { get; set; }
         public string PrenomContact { get; set; }
         public string EmailContact { get; set; }
-        [ForeignKey("UtilisateurId")]
-        public virtual Utilisateur Utilisateur { get; set; }
+        public string TelephoneContact { get; set; }
+        public Utilisateur Utilisateur { get; set; }
+        public TypeContact TypeContact { get; set; }
+
     }
 }
