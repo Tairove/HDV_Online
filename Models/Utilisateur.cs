@@ -10,11 +10,10 @@ namespace HDV_Online.Models
     {
         public int Id { get; set; }
         public string Password { get; set; }
-        public string Role { get; set; }
         public string EmailUtilisateur { get; set; }
-        public ICollection<Commande> Commandes { get; set; }
-        public ICollection<Commercial> Commercial { get; set; }
-        [ForeignKey("ClientId")]
-        public ICollection<Client> Client { get; set; }
+        public Role Role { get; set; }
+        public ListeClientCommercial ListeClientCommercial { get; set; }
+        public Client Client { get; set; }
+        public ICollection<Contact>? Contact { get; set; }
     }
 }

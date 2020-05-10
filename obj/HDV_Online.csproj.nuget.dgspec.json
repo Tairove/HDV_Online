@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Jean-Baptou\\source\\repos\\HDV_Online\\HDV_Online\\HDV_Online.csproj": {}
+    "C:\\Users\\Quentin\\Desktop\\Projets\\HDV_Online\\HDV_Online\\HDV_Online.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Jean-Baptou\\source\\repos\\HDV_Online\\HDV_Online\\HDV_Online.csproj": {
+    "C:\\Users\\Quentin\\Desktop\\Projets\\HDV_Online\\HDV_Online\\HDV_Online.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Jean-Baptou\\source\\repos\\HDV_Online\\HDV_Online\\HDV_Online.csproj",
+        "projectUniqueName": "C:\\Users\\Quentin\\Desktop\\Projets\\HDV_Online\\HDV_Online\\HDV_Online.csproj",
         "projectName": "HDV_Online",
-        "projectPath": "C:\\Users\\Jean-Baptou\\source\\repos\\HDV_Online\\HDV_Online\\HDV_Online.csproj",
-        "packagesPath": "C:\\Users\\Jean-Baptou\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Jean-Baptou\\source\\repos\\HDV_Online\\HDV_Online\\obj\\",
+        "projectPath": "C:\\Users\\Quentin\\Desktop\\Projets\\HDV_Online\\HDV_Online\\HDV_Online.csproj",
+        "packagesPath": "C:\\Users\\Quentin\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Quentin\\Desktop\\Projets\\HDV_Online\\HDV_Online\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Jean-Baptou\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Quentin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -41,6 +41,24 @@
             "EntityFramework": {
               "target": "Package",
               "version": "[6.4.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[3.1.2, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[3.1.2, )"
             }
           },
           "imports": [
