@@ -4,14 +4,16 @@ using HDV_Online.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HDV_Online.Migrations
 {
     [DbContext(typeof(HDVContext))]
-    partial class HDVContextModelSnapshot : ModelSnapshot
+    [Migration("20200511074158_FKRole")]
+    partial class FKRole
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -217,11 +219,11 @@ namespace HDV_Online.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("CategorieProduitId")
+                        .HasColumnType("int");
+
                     b.Property<string>("DescriptionProduit")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("IdCategorieProduit")
-                        .HasColumnType("int");
 
                     b.Property<int?>("IdProduit")
                         .HasColumnType("int");
@@ -237,7 +239,7 @@ namespace HDV_Online.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdCategorieProduit");
+                    b.HasIndex("CategorieProduitId");
 
                     b.HasIndex("IdProduit");
 
@@ -370,9 +372,7 @@ namespace HDV_Online.Migrations
                 {
                     b.HasOne("HDV_Online.Models.CategorieProduit", "CategorieProduit")
                         .WithMany("Produit")
-                        .HasForeignKey("IdCategorieProduit")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategorieProduitId");
 
                     b.HasOne("HDV_Online.Models.ProduitsCommande", "ProduitsCommandes")
                         .WithMany("Produit")

@@ -12,6 +12,7 @@ namespace HDV_Online.Models
         public string Password { get; set; }
         public string Email { get; set; }
         public string AccessToken { get; set; }
+        public int RoleId { get; set; }
         public Role Role { get; set; }
         public ListeClientCommercial ListeClientCommercial { get; set; }
         public Client Client { get; set; }
