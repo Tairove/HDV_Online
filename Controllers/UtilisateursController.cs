@@ -12,9 +12,11 @@ using Microsoft.IdentityModel.Tokens;
 using System.Security.Claims;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HDV_Online.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
     public class UtilisateursController : ControllerBase
@@ -38,14 +40,15 @@ namespace HDV_Online.Controllers
 
             if (user != null)
             {
-                user.AccessToken = GenerateAccessToken(user.Id);
+                var role = await _context.Roles.Where(r => r.Id == user.RoleId).FirstOrDefaultAsync();
+                user.AccessToken = GenerateAccessToken(user.Id, role.NomRole);
                 await _context.SaveChangesAsync();
             }
 
             return user;
         }
 
-        private string GenerateAccessToken(int userId)
+        private string GenerateAccessToken(int userId, string userRoles)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_jwtsettings.SecretKey);
@@ -53,7 +56,8 @@ namespace HDV_Online.Controllers
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.Name, Convert.ToString(userId))
+                    new Claim(ClaimTypes.Name, Convert.ToString(userId)),
+                    new Claim(ClaimTypes.Role, userRoles)
                 }),
                 Expires = DateTime.UtcNow.AddDays(1),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key),
@@ -113,6 +117,7 @@ namespace HDV_Online.Controllers
         }
 
         // GET: api/Utilisateurs
+        [Authorize]
         [HttpGet]
         public String Get()
         {

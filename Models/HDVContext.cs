@@ -28,7 +28,15 @@ namespace HDV_Online.Models
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Utilisateur>()
+                .HasOne(r => r.Role)
+                .WithMany(r => r.Utilisateur)
+                .HasForeignKey(r => r.RoleId);
 
+            modelBuilder.Entity<Produit>()
+                .HasOne(r => r.CategorieProduit)
+                .WithMany(r => r.Produit)
+                .HasForeignKey(r => r.IdCategorieProduit);
         }
     }
 }
