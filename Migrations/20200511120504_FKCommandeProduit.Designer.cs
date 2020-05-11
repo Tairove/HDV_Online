@@ -4,14 +4,16 @@ using HDV_Online.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HDV_Online.Migrations
 {
     [DbContext(typeof(HDVContext))]
-    partial class HDVContextModelSnapshot : ModelSnapshot
+    [Migration("20200511120504_FKCommandeProduit")]
+    partial class FKCommandeProduit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -124,7 +126,7 @@ namespace HDV_Online.Migrations
                     b.Property<string>("TelephoneContact")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TypeContactId")
+                    b.Property<int?>("TypeContactId")
                         .HasColumnType("int");
 
                     b.Property<int?>("UtilisateurId")
@@ -341,9 +343,7 @@ namespace HDV_Online.Migrations
                 {
                     b.HasOne("HDV_Online.Models.TypeContact", "TypeContact")
                         .WithMany("Contact")
-                        .HasForeignKey("TypeContactId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("TypeContactId");
 
                     b.HasOne("HDV_Online.Models.Utilisateur", "Utilisateur")
                         .WithMany("Contact")

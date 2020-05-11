@@ -105,7 +105,7 @@ namespace HDV_Online.Controllers
                 {
                     var userId = principle.FindFirst(ClaimTypes.Name)?.Value;
 
-                    return await _context.Utilisateur.Include(r => r.Role).Where(u => u.Id == Convert.ToInt32(userId)).FirstOrDefaultAsync();
+                    return await _context.Utilisateur.Include(r => r.Role).Include(c => c.Client).Where(u => u.Id == Convert.ToInt32(userId)).FirstOrDefaultAsync();
                 }
             }
             catch (Exception)

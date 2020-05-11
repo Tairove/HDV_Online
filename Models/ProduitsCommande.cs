@@ -13,7 +13,7 @@ namespace HDV_Online.Models
         public Commande IdCommande { get; set; }
 
         [ForeignKey("IdProduit")]
-        public ICollection<Produit> Produit { get; set; }
+        public Produit Produit { get; set; }
 
     }
 }

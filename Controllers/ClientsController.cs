@@ -24,7 +24,7 @@ namespace HDV_Online.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Client>>> GetClient()
         {
-            return await _context.Client.ToListAsync();
+            return await _context.Client.Include(c => c.Coordonnees).ToListAsync();
         }
 
         // GET: api/Clients/5
