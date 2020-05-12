@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HDV_Online.Models;
+using Newtonsoft.Json;
 
 namespace HDV_Online.Controllers
 {
@@ -22,9 +23,13 @@ namespace HDV_Online.Controllers
 
         // GET: api/TypeContacts
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<TypeContact>>> GetTypeContacts()
+        public String Get()
         {
-            return await _context.TypeContacts.ToListAsync();
+            return JsonConvert.SerializeObject(_context.TypeContacts.ToList(), Formatting.Indented,
+            new JsonSerializerSettings
+            {
+                ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+            });
         }
 
         // GET: api/TypeContacts/5

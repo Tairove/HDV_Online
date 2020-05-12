@@ -13,8 +13,8 @@ namespace HDV_Online.Models
         public string DescriptionProduit { get; set; }
         public float Prix { get; set; }
         public int QuantiteProd { get; set; }
-        public ProduitsCommande ProduitsCommandes { get; set; }
-        public int IdCategorieProduit { get; set; }
+        public ICollection<ProduitsCommande> ProduitsCommandes { get; set; }
+        public int IdCategorieProduit { get;set; }
         public CategorieProduit CategorieProduit { get; set; }
     }
 }

@@ -37,6 +37,18 @@ namespace HDV_Online.Models
                 .HasOne(r => r.CategorieProduit)
                 .WithMany(r => r.Produit)
                 .HasForeignKey(r => r.IdCategorieProduit);
+
+            modelBuilder.Entity<Contact>()
+                .HasOne(u => u.Utilisateur)
+                .WithMany(u => u.Contact)
+                .HasForeignKey(u => u.UtilisateurId);
+
+
+            modelBuilder.Entity<Contact>()
+                .HasOne(u => u.TypeContact)
+                .WithMany(u => u.Contact)
+                .HasForeignKey(u => u.TypeContactId);
+
         }
     }
 }

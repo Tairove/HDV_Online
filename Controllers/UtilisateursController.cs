@@ -13,6 +13,8 @@ using System.Security.Claims;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNet.Identity;
 
 namespace HDV_Online.Controllers
 {
@@ -25,6 +27,7 @@ namespace HDV_Online.Controllers
         private readonly JwtSettings _jwtsettings;
 
 
+
         public UtilisateursController(HDVContext context, IOptions<JwtSettings> jwtsettings)
         {
             _context = context;
@@ -35,10 +38,14 @@ namespace HDV_Online.Controllers
         [HttpPost("Login")]
         public async Task<ActionResult<Utilisateur>> Login([FromBody] Utilisateur user)
         {
-            user = await _context.Utilisateur.Where(u => u.Email == user.Email
-                                                && u.Password == user.Password).FirstOrDefaultAsync();
+            var ph = new PasswordHasher();
+            var providedPassword = user.Password;
 
-            if (user != null)
+            user = await _context.Utilisateur.Where(u => u.Email == user.Email).FirstOrDefaultAsync();
+
+            var validPassword = ph.VerifyHashedPassword(user.Password, providedPassword);
+
+            if (user != null && validPassword == Microsoft.AspNet.Identity.PasswordVerificationResult.Success)
             {
                 var role = await _context.Roles.Where(r => r.Id == user.RoleId).FirstOrDefaultAsync();
                 user.AccessToken = GenerateAccessToken(user.Id, role.NomRole);
@@ -105,7 +112,7 @@ namespace HDV_Online.Controllers
                 {
                     var userId = principle.FindFirst(ClaimTypes.Name)?.Value;
 
-                    return await _context.Utilisateur.Include(r => r.Role).Where(u => u.Id == Convert.ToInt32(userId)).FirstOrDefaultAsync();
+                    return await _context.Utilisateur.Include(r => r.Role).Include(c => c.Client).Where(u => u.Id == Convert.ToInt32(userId)).FirstOrDefaultAsync();
                 }
             }
             catch (Exception)
@@ -180,12 +187,24 @@ namespace HDV_Online.Controllers
         [HttpPost]
         public async Task<ActionResult<Utilisateur>> PostUtilisateur(Utilisateur utilisateur)
         {
+            var password = utilisateur.Password;
+            utilisateur.RoleId = 1;
+
+            utilisateur.Password = PasswordHasher(utilisateur, password);
+
             _context.Utilisateur.Add(utilisateur);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetUtilisateur", new { id = utilisateur.Id }, utilisateur);
         }
 
+        public string PasswordHasher(Utilisateur utilisateur, string password)
+        {
+            var ph = new PasswordHasher();
+
+            var hashedPassword = ph.HashPassword(password);
+            return hashedPassword;
+        }
         // DELETE: api/Utilisateurs/5
         [HttpDelete("{id}")]
         public async Task<ActionResult<Utilisateur>> DeleteUtilisateur(int id)
