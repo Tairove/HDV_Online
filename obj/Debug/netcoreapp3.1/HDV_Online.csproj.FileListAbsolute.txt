@@ -168,5 +168,6 @@ C:\Users\Quentin\Desktop\Projets\HDV_Online\HDV_Online\bin\Debug\netcoreapp3.1\M
 C:\Users\Quentin\Desktop\Projets\HDV_Online\HDV_Online\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.JsonPatch.dll
 C:\Users\Quentin\Desktop\Projets\HDV_Online\HDV_Online\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\Quentin\Desktop\Projets\HDV_Online\HDV_Online\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
+C:\Users\Quentin\Desktop\Projets\HDV_Online\HDV_Online\bin\Debug\netcoreapp3.1\Microsoft.AspNet.Identity.Core.dll
 C:\Users\Quentin\Desktop\Projets\HDV_Online\HDV_Online\obj\Debug\netcoreapp3.1\HDV_Online.csproj.CoreCompileInputs.cache
 C:\Users\Quentin\Desktop\Projets\HDV_Online\HDV_Online\obj\Debug\netcoreapp3.1\HDV_Online.MvcApplicationPartsAssemblyInfo.cache
