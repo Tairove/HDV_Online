@@ -4,14 +4,16 @@ using HDV_Online.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HDV_Online.Migrations
 {
     [DbContext(typeof(HDVContext))]
-    partial class HDVContextModelSnapshot : ModelSnapshot
+    [Migration("20200512212322_FK Liste Produits")]
+    partial class FKListeProduits
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -223,6 +225,9 @@ namespace HDV_Online.Migrations
                     b.Property<int>("IdCategorieProduit")
                         .HasColumnType("int");
 
+                    b.Property<int?>("IdProduit")
+                        .HasColumnType("int");
+
                     b.Property<string>("NomProduit")
                         .HasColumnType("nvarchar(max)");
 
@@ -235,6 +240,8 @@ namespace HDV_Online.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("IdCategorieProduit");
+
+                    b.HasIndex("IdProduit");
 
                     b.ToTable("Produits");
                 });
@@ -249,14 +256,11 @@ namespace HDV_Online.Migrations
                     b.Property<int?>("CommandeId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("IdProduit")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("CommandeId");
-
-                    b.HasIndex("IdProduit");
+                    b.HasIndex("CommandeId")
+                        .IsUnique()
+                        .HasFilter("[CommandeId] IS NOT NULL");
 
                     b.ToTable("ProduitsCommandes");
                 });
@@ -373,17 +377,17 @@ namespace HDV_Online.Migrations
                         .HasForeignKey("IdCategorieProduit")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("HDV_Online.Models.ProduitsCommande", "ProduitsCommandes")
+                        .WithMany("Produit")
+                        .HasForeignKey("IdProduit");
                 });
 
             modelBuilder.Entity("HDV_Online.Models.ProduitsCommande", b =>
                 {
                     b.HasOne("HDV_Online.Models.Commande", "IdCommande")
-                        .WithMany("ProduitsCommandes")
-                        .HasForeignKey("CommandeId");
-
-                    b.HasOne("HDV_Online.Models.Produit", "Produit")
-                        .WithMany("ProduitsCommandes")
-                        .HasForeignKey("IdProduit");
+                        .WithOne("ProduitsCommandes")
+                        .HasForeignKey("HDV_Online.Models.ProduitsCommande", "CommandeId");
                 });
 
             modelBuilder.Entity("HDV_Online.Models.Utilisateur", b =>

@@ -16,6 +16,6 @@ namespace HDV_Online.Models
         public Role Role { get; set; }
         public ListeClientCommercial ListeClientCommercial { get; set; }
         public Client Client { get; set; }
-        public ICollection<Contact>? Contact { get; set; }
+        public ICollection<Contact> Contact { get; set; }
     }
 }
