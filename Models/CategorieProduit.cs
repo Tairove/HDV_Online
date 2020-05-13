@@ -11,5 +11,6 @@ namespace HDV_Online.Models
         public string NomCategorieProduit { get; set; }
         public string DescriptionCategorieProduit { get; set; }
         public ICollection<Produit> Produit { get; set; }
+        public string? SourceImg { get; set; }
     }
 }
