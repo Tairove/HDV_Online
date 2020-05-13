@@ -15,5 +15,7 @@ namespace HDV_Online.Models
         [ForeignKey("IdProduit")]
         public Produit Produit { get; set; }
 
+        public int Quantite { get; set; }
+
     }
 }

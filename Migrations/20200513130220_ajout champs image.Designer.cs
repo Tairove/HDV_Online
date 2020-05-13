@@ -4,14 +4,16 @@ using HDV_Online.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HDV_Online.Migrations
 {
     [DbContext(typeof(HDVContext))]
-    partial class HDVContextModelSnapshot : ModelSnapshot
+    [Migration("20200513130220_ajout champs image")]
+    partial class ajoutchampsimage
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
