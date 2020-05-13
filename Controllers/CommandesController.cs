@@ -41,6 +41,15 @@ namespace HDV_Online.Controllers
             return commande;
         }
 
+
+        [HttpGet("Last")]
+        public int GetLastCommandeId()
+        {
+            var lastCommande = _context.Commandes.OrderByDescending(c => c.Id).FirstOrDefault();
+            return lastCommande.Id;
+        }
+
+
         // PUT: api/Commandes/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.

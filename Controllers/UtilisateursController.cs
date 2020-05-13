@@ -190,7 +190,7 @@ namespace HDV_Online.Controllers
             var password = utilisateur.Password;
             utilisateur.RoleId = 1;
 
-            utilisateur.Password = PasswordHasher(utilisateur, password);
+            utilisateur.Password = PasswordHasher(password);
 
             _context.Utilisateur.Add(utilisateur);
             await _context.SaveChangesAsync();
@@ -198,7 +198,7 @@ namespace HDV_Online.Controllers
             return CreatedAtAction("GetUtilisateur", new { id = utilisateur.Id }, utilisateur);
         }
 
-        public string PasswordHasher(Utilisateur utilisateur, string password)
+        public string PasswordHasher(string password)
         {
             var ph = new PasswordHasher();
 

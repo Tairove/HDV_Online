@@ -11,7 +11,7 @@ namespace HDV_Online.Models
         public int Id { get; set; }
         [Column(TypeName = "date")]
         public DateTime DateCommande { get; set; }
-        public ProduitsCommande ProduitsCommandes { get; set; }
+        public  ICollection<ProduitsCommande> ProduitsCommandes { get; set; }
         [ForeignKey("ClientId")]
         public Client Client { get; set; }
 

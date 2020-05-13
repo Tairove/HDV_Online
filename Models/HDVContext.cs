@@ -48,7 +48,6 @@ namespace HDV_Online.Models
                 .HasOne(u => u.TypeContact)
                 .WithMany(u => u.Contact)
                 .HasForeignKey(u => u.TypeContactId);
-
         }
     }
 }
