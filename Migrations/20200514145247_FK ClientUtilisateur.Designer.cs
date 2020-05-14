@@ -4,14 +4,16 @@ using HDV_Online.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HDV_Online.Migrations
 {
     [DbContext(typeof(HDVContext))]
-    partial class HDVContextModelSnapshot : ModelSnapshot
+    [Migration("20200514145247_FK ClientUtilisateur")]
+    partial class FKClientUtilisateur
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -159,7 +161,7 @@ namespace HDV_Online.Migrations
                     b.Property<string>("Adresse")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ClientId")
+                    b.Property<int?>("ClientId")
                         .HasColumnType("int");
 
                     b.Property<string>("Code_Postal")
@@ -171,7 +173,7 @@ namespace HDV_Online.Migrations
                     b.Property<bool>("Livraison")
                         .HasColumnType("bit");
 
-                    b.Property<int>("PaysId")
+                    b.Property<int?>("PaysId")
                         .HasColumnType("int");
 
                     b.Property<string>("Ville")
@@ -379,15 +381,11 @@ namespace HDV_Online.Migrations
                 {
                     b.HasOne("HDV_Online.Models.Client", "Client")
                         .WithMany("Coordonnees")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ClientId");
 
                     b.HasOne("HDV_Online.Models.Pays", "Pays")
                         .WithMany("Coordonnee")
-                        .HasForeignKey("PaysId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PaysId");
                 });
 
             modelBuilder.Entity("HDV_Online.Models.ListeClientCommercial", b =>

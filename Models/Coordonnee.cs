@@ -14,7 +14,9 @@ namespace HDV_Online.Models
         public string Adresse { get; set; }
         public bool Facturation { get; set; }
         public bool Livraison { get; set; }
+        public int ClientId { get; set; }
         public Client Client { get; set; }
+        public int PaysId { get; set; }
         public Pays Pays { get; set; }
 
     }

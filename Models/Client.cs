@@ -19,9 +19,11 @@ namespace HDV_Online.Models
         [Column(TypeName = "date")]
         public DateTime DateCreationCompte { get; set; }
         public int NbCommandesPassees { get; set; }
+        public ICollection<Commande> Commandes { get; set; }
         public ICollection<Coordonnee> Coordonnees { get; set; }
+        [ForeignKey("CommercialId")]
         public ListeClientCommercial Commercial { get; set; }
-        [ForeignKey("UtilisateurId")]
+        public int UtilisateurId { get; set; }
         public Utilisateur Utilisateur { get; set; }
 
     }

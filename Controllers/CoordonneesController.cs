@@ -41,6 +41,13 @@ namespace HDV_Online.Controllers
             return coordonnee;
         }
 
+        [HttpGet("client/{id}")]
+        public async Task<ActionResult<IEnumerable<Coordonnee>>> GetCoordonneeByClient(int id)
+        {
+            return await _context.Coordonnee.Where(c => c.ClientId==id).Include(p => p.Pays).ToListAsync();
+
+        }
+
         // PUT: api/Coordonnees/5
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
