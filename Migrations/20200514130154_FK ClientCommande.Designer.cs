@@ -4,14 +4,16 @@ using HDV_Online.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HDV_Online.Migrations
 {
     [DbContext(typeof(HDVContext))]
-    partial class HDVContextModelSnapshot : ModelSnapshot
+    [Migration("20200514130154_FK ClientCommande")]
+    partial class FKClientCommande
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,9 +52,6 @@ namespace HDV_Online.Migrations
                     b.Property<int?>("ClientId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("CommercialId")
-                        .HasColumnType("int");
-
                     b.Property<DateTime>("DateCreationCompte")
                         .HasColumnType("date");
 
@@ -74,17 +73,16 @@ namespace HDV_Online.Migrations
                     b.Property<string>("PrenomClient")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UtilisateurId")
+                    b.Property<int?>("UtilisateurId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("ClientId");
 
-                    b.HasIndex("CommercialId");
-
                     b.HasIndex("UtilisateurId")
-                        .IsUnique();
+                        .IsUnique()
+                        .HasFilter("[UtilisateurId] IS NOT NULL");
 
                     b.ToTable("Client");
                 });
@@ -159,7 +157,7 @@ namespace HDV_Online.Migrations
                     b.Property<string>("Adresse")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("ClientId")
+                    b.Property<int?>("ClientId")
                         .HasColumnType("int");
 
                     b.Property<string>("Code_Postal")
@@ -171,7 +169,7 @@ namespace HDV_Online.Migrations
                     b.Property<bool>("Livraison")
                         .HasColumnType("bit");
 
-                    b.Property<int>("PaysId")
+                    b.Property<int?>("PaysId")
                         .HasColumnType("int");
 
                     b.Property<string>("Ville")
@@ -338,19 +336,13 @@ namespace HDV_Online.Migrations
 
             modelBuilder.Entity("HDV_Online.Models.Client", b =>
                 {
-                    b.HasOne("HDV_Online.Models.ListeClientCommercial", null)
+                    b.HasOne("HDV_Online.Models.ListeClientCommercial", "Commercial")
                         .WithMany("Client")
                         .HasForeignKey("ClientId");
 
-                    b.HasOne("HDV_Online.Models.ListeClientCommercial", "Commercial")
-                        .WithMany()
-                        .HasForeignKey("CommercialId");
-
                     b.HasOne("HDV_Online.Models.Utilisateur", "Utilisateur")
                         .WithOne("Client")
-                        .HasForeignKey("HDV_Online.Models.Client", "UtilisateurId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("HDV_Online.Models.Client", "UtilisateurId");
                 });
 
             modelBuilder.Entity("HDV_Online.Models.Commande", b =>
@@ -379,15 +371,11 @@ namespace HDV_Online.Migrations
                 {
                     b.HasOne("HDV_Online.Models.Client", "Client")
                         .WithMany("Coordonnees")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ClientId");
 
                     b.HasOne("HDV_Online.Models.Pays", "Pays")
                         .WithMany("Coordonnee")
-                        .HasForeignKey("PaysId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PaysId");
                 });
 
             modelBuilder.Entity("HDV_Online.Models.ListeClientCommercial", b =>

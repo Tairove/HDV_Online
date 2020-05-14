@@ -9,13 +9,13 @@ namespace HDV_Online.Models
     public class ProduitsCommande
     {
         public int Id { get; set; }
-        [ForeignKey("CommandeId")]
-        public Commande IdCommande { get; set; }
 
-        [ForeignKey("IdProduit")]
+        public int IdCommande { get; set; }
+        public Commande Commande { get; set; }
+        public int IdProduit { get; set; }
         public Produit Produit { get; set; }
-
         public int Quantite { get; set; }
+        public int PrixTotalLigne { get; set; }
 
     }
 }

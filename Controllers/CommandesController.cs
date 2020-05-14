@@ -24,7 +24,13 @@ namespace HDV_Online.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Commande>>> GetCommandes()
         {
-            return await _context.Commandes.ToListAsync();
+            return await _context.Commandes.Include(c => c.Client).Include(c => c.ProduitsCommandes).ThenInclude(p => p.Produit).OrderByDescending(c => c.Id).ToListAsync();
+        }
+
+        [HttpGet("client/{id}")]
+        public async Task<ActionResult<IEnumerable<Commande>>> GetCommandesByClient(int id)
+        {
+            return await _context.Commandes.Include(c => c.ProduitsCommandes).ThenInclude(p => p.Produit).Where(c => c.ClientId==id).OrderByDescending(c => c.Id).ToListAsync();
         }
 
         // GET: api/Commandes/5
@@ -46,6 +52,12 @@ namespace HDV_Online.Controllers
         public int GetLastCommandeId()
         {
             var lastCommande = _context.Commandes.OrderByDescending(c => c.Id).FirstOrDefault();
+            if (lastCommande == null)
+            {
+                var lastCommandeNull = -1;
+                return lastCommandeNull;
+            }
+
             return lastCommande.Id;
         }
 
