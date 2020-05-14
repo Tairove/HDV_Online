@@ -24,7 +24,7 @@ namespace HDV_Online.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<CategorieProduit>>> GetCategorieProduits()
         {
-            return await _context.CategorieProduits.Include(c => c.Produit).ToListAsync();
+            return await _context.CategorieProduits.Include(p => p.Produit).ToListAsync();
         }
 
         // GET: api/CategorieProduits/5
